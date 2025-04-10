@@ -1,0 +1,16 @@
+USDA_API_KEY = "your-api-key-here"
+
+import requests
+
+response = requests.get(
+    "https://api.nal.usda.gov/fdc/v1/foods/search",
+    params={
+        "api_key": USDA_API_KEY,
+        "query": "apple",
+        "pageSize": 3,
+        "dataType": ["Survey (FNDDS)"]
+    }
+)
+
+data = response.json()
+print(data['foods'][0]['description'])
